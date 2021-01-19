@@ -28,3 +28,4 @@ traitlets==4.3.2
 Werkzeug==0.15.4
 yahoo-finance==1.4.0
 yfinance==0.1.55
+datetime===4.3
