@@ -5,9 +5,7 @@ import plotly.graph_objs as go
 
 import yfinance as yf
 import pandas as pd
-from dash.dependencies import Input, Output
 
-from datetime import datetime
 
 start_date = "2018-01-01"
 end_date = "2021-01-16"
@@ -65,7 +63,7 @@ colors = {
     'text': '#7FDBFF'
 }
 
-
+#VARIABLES
 #primer grafico BTC
 df = data_btc.copy()
 fig = go.Figure(data=[go.Candlestick(x=df.index,
@@ -82,66 +80,28 @@ fig2 = go.Figure(data=[go.Candlestick(x=df2.index,
                 low=df2['Low'],
                 close=df2['Close'])])
 
-########### Define your variables
-"""
-beers=['Chesapeake Stout', 'Snake Dog IPA', 'Imperial Porter', 'Double Dog IPA']
-ibu_values=[35, 60, 85, 75]
-abv_values=[5.4, 7.1, 9.2, 4.3]
-color1='darkred'
-color2='orange'
-mytitle='Beer Comparison'
-tabtitle='beer!'
-myheading='Flying Dog Beers'
-label1='IBU'
-label2='ABV'
-githublink='https://github.com/austinlasseter/flying-dog-beers'
-sourceurl='https://www.flyingdog.com/beers/'
+#tercer grafico ETH
+df3 = data_eth.copy()
+fig3 = go.Figure(data=[go.Candlestick(x=df3.index,
+                open=df3['Open'],
+                high=df3['High'],
+                low=df3['Low'],
+                close=df3['Close'])])
 
-########### Set up the chart
-bitterness = go.Bar(
-    x=beers,
-    y=ibu_values,
-    name=label1,
-    marker={'color':color1}
-)
-alcohol = go.Bar(
-    x=beers,
-    y=abv_values,
-    name=label2,
-    marker={'color':color2}
-)
-
-beer_data = [bitterness, alcohol]
-beer_layout = go.Layout(
-    barmode='group',
-    title = mytitle
-) """
 
 ########### Initiate the app
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 server = app.server
-app.title="Graficos"
+app.title="Graphs"
 
 ########### Set up the layout
 
-
-"""app.layout = html.Div(children=[
-    html.H1(myheading),
-    dcc.Graph(
-        id='flyingdog',
-        figure=beer_fig
-    ),
-    html.A('Code on Github', href=githublink),
-    html.Br(),
-    html.A('Data Source', href=sourceurl),
-    ]
-) """
     
 app.layout = html.Div(children=[
     # All elements from the top of the page
     html.Div([
-        html.H1(children='BTC'),
+        html.H1(children='BTC-USD'),
 
         html.Div(children='''
             Description.
@@ -165,6 +125,20 @@ app.layout = html.Div(children=[
             figure=fig2
         ),  
     ]),
+        # New Div for all elements in the new 'row' of the page
+    html.Div([
+        html.H1(children='ETH-USD'),
+
+        html.Div(children='''
+            Description.
+        '''),
+
+        dcc.Graph(
+            id='graph3',
+            figure=fig3
+        ),  
+    ]),
+            
 ]) 
     
     
