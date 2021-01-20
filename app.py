@@ -5,10 +5,13 @@ import plotly.graph_objs as go
 
 import yfinance as yf
 import pandas as pd
+from datetime import datetime
+
 
 
 start_date = "2018-01-01"
-end_date = "2021-01-16"
+end_date = datetime.today().strftime('%Y-%m-%d')
+#end_date = "2021-01-16"
 
 
 class Hist_data:
@@ -139,9 +142,7 @@ app.layout = html.Div(children=[
         ),  
     ]),
             
-]) 
-    
-    
+])   
     
 if __name__ == '__main__':
     app.run_server()
